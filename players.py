@@ -12,7 +12,7 @@ class Player:
             - trains          (int): tiles the player can afford
             - stations        (int): stations the player can build
             - train_deck   (Trains): player's train cards deck
-            - ticket_deck (Tickets): player's destination tickets deck
+            - tickets_deck (Tickets): player's destination tickets deck
 
         Methods :
             - add_card(card)
