@@ -11,7 +11,7 @@ class Player:
             - color           (str): identify the player
             - trains          (int): tiles the player can afford
             - stations        (int): stations the player can build
-            - train_deck   (Trains): player's train cards deck
+            - train_cards_deck   (Trains): player's train cards deck
             - tickets_deck (Tickets): player's destination tickets deck
 
         Methods :
@@ -28,9 +28,9 @@ class Player:
         self.trains = 45
         self.stations = 3
 
-        self.train_deck = []
+        self.train_cards_deck = []
         for _ in range(4):
-            self.train_deck.append(trains_draw.get_card())
+            self.train_cards_deck.append(trains_draw.get_card())
 
         self.tickets_deck = []
         for _ in range(3):
@@ -47,9 +47,9 @@ class Player:
         """
         assert type(card) == Trains or type(card) == Tickets, "Can add only Trains or Tickets type"
         if type(card) == Trains:
-            self.train_deck.append(card)
+            self.train_cards_deck.append(card)
         elif type(card) == Tickets:
-            self.train_deck.append(card)
+            self.train_cards_deck.append(card)
 
 
     def discard_ticket(self, rm_ticket: Tickets) -> None:
@@ -69,9 +69,9 @@ class Player:
             color (str): concerned color
         """
         i = 0
-        while i < len(self.train_deck) and amount > 0:
-            if self.train_deck[i].color == color:
-                self.train_deck.pop(i)
+        while i < len(self.train_cards_deck) and amount > 0:
+            if self.train_cards_deck[i].color == color:
+                self.train_cards_deck.pop(i)
                 amount -= 1
             else:
                 i += 1

@@ -1,4 +1,6 @@
-train_colors = ["grey", "white", "yellow", "red", "orange", "blue", "green", "pink"]
+MEDIAS_REPERTORY = "./medias/"
+
+train_colors = ["grey", "white", "yellow", "red", "orange", "blue", "green", "pink", "locomotive"]
 players_colors = ["black", "yellow", "red", "blue", "green"]
 
 cities = [
