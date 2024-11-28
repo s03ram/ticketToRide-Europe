@@ -1,4 +1,4 @@
-from draws import Trains, Tickets
+from cards import TrainCard, TicketCard
 from data import routes
 
 
@@ -11,13 +11,13 @@ class Player:
             - color           (str): identify the player
             - trains          (int): tiles the player can afford
             - stations        (int): stations the player can build
-            - train_cards_deck   (Trains): player's train cards deck
+            - train_cards_deck   (TrainCard): player's train cards deck
             - tickets_deck (Tickets): player's destination tickets deck
 
         Methods :
             - add_card(card)
                 add the given card to the corresponding deck
-                card (Trains or Tickets)
+                card (TrainCard or Tickets)
             - discard_ticket(Tickets)
                 remove a ticket from the player's deck
             - discard_train_card(amount, color)
@@ -43,16 +43,16 @@ class Player:
         """add a card in the appropriate player's deck
 
         Args:
-            card (Trains or Tickets): card to add
+            card (TrainCard or TicketCard): card to add
         """
-        assert type(card) == Trains or type(card) == Tickets, "Can add only Trains or Tickets type"
-        if type(card) == Trains:
+        assert type(card) == TrainCard or type(card) == TicketCard, "Can add only TrainCard or Tickets type"
+        if type(card) == TrainCard:
             self.train_cards_deck.append(card)
-        elif type(card) == Tickets:
+        elif type(card) == TicketCard:
             self.train_cards_deck.append(card)
 
 
-    def discard_ticket(self, rm_ticket: Tickets) -> None:
+    def discard_ticket(self, rm_ticket) -> None:
         i = 0
         while i < len(self.tickets):
             if self.tickets[i].city_a == rm_ticket.city_a and self.tickets[i].city_b == rm_ticket.city_b:
