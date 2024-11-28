@@ -1,4 +1,4 @@
-import pygame as pg
+import dearpygui.dearpygui as dpg
 
 from random import shuffle
 from boards import Board
@@ -67,16 +67,7 @@ TRAINS_REPERTORY = MEDIAS_REPERTORY + "train_cards/"
 
 #########################
 # Setting up the window #
-pg.init()
-window = pg.display.set_mode((0,0), pg.FULLSCREEN | pg.HWSURFACE)
-x_window, y_window = pg.display.get_window_size()
-# fancy background
-window.fill((40,40,40))
-# awesome title
-pg.display.set_caption("Ticket to ride : Europe")
-# unbelievable icon
-ttr_icon = pg.image.load(MEDIAS_REPERTORY + TTR_ICON)
-pg.display.set_icon(ttr_icon)
+
 
 
 #######################
@@ -87,70 +78,30 @@ board = Board()
 # Setting up players #
 players = init_players(2, board.trains_draw.draw, board.tickets_draw.draw)
 
-# text render
-title = pg.font.Font(None, 28)
-text = pg.font.Font(None, 24)
 
 # display player's train cards
 player_trains_cards = count_train_cards_color(players[0])
-texte = title.render("Your train cards :", True, "white")
-window.blit(texte, (5,10))
-y = 40
+
 for color, amount in player_trains_cards.items():
-    texte = text.render(color + "  :  " + str(amount), True, "white")
-    window.blit(texte, (20,y))
-    y += 23
+    pass
     
 # display player's ticket cards
 player_tickets = players[0].tickets_deck
-texte = title.render("Your tickets :", True, "white")
-window.blit(texte, (5,300))
-y = 330
 for ticket in player_tickets:
-    texte = text.render(ticket.get_city_a() + " -->  " + ticket.get_city_b() + " : " + str(ticket.get_value()), True, "white")
-    window.blit(texte, (20,y))
-    y += 23
+    pass
 
 # display player's trains
 player_trains = players[0].trains
-texte = title.render("Remaining trains :  " + str(player_trains), True, "white")
-window.blit(texte, (5,450))
 
 # display player's stations
 player_stations = players[0].stations
-texte = title.render("Remaining stations :  " + str(player_stations), True, "white")
-window.blit(texte, (5,475))
 
 # display offer
-texte = title.render("Offer :", True, "white")
-window.blit(texte, (x_window-300,10))
-y = 40
 for card in board.trains_draw.offer.deck:
-    texte = text.render( card.get_color(), True, "white")
-    window.blit(texte, (x_window-300,y))
-    y += 23
-
+    pass
 
 #############
 # Game loop #
-running  = True
-while running:
-    board.trains_draw.offer.check(board.trains_draw.draw, board.trains_draw.discard)
-
-    for event in pg.event.get():
-        if event.type == pg.KEYDOWN:
-            
-            if event.key == pg.K_ESCAPE:
-                running = False
-            
-            if event.key == pg.K_w: # draw a random train card
-                print(count_train_cards_color(players[0]))
-                players[0].draw_train_from(board.trains_draw.draw)
-            
-            if event.key == pg.K_x: # draw a train card from the offer
-                print(count_train_cards_color(players[0]))
-                players[0].draw_train_from(board.trains_draw.draw)
 
 
-    pg.display.flip()
 
